@@ -15,9 +15,34 @@ namespace InPocket.Controllers
         private MovieDBContext db = new MovieDBContext();
 
         // GET: Movies
+        /**
         public ActionResult Index()
         {
             return View(db.Movies.ToList());
+        }
+        **/
+
+        public ActionResult Index(String movieGenre, String searchString)
+        {
+            var GenreLst = new List<string>();
+
+            var GenreQry = from d in db.Movies
+                           orderby d.Genre
+                           select d.Genre;
+            GenreLst.AddRange(GenreQry.Distinct()); // find distinct element from the list 
+            ViewBag.movieGenre = new SelectList(GenreLst); // set a viewbage list as list of distinct element
+
+            var movies = from m in db.Movies
+                         select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+            if (!String.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+            return View(movies);
         }
 
         // GET: Movies/Details/5
