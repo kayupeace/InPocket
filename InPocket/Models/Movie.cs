@@ -36,11 +36,9 @@ namespace InPocket.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-        /**
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         [StringLength(5)]
         public string Rating { get; set; }
-    **/
     }
 
     // in order to use entity framework database context, u need install NuGet Package 

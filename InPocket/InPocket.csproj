@@ -161,6 +161,10 @@
     <Compile Include="Migrations\201708160419052_DataAnnotations.Designer.cs">
       <DependentUpon>201708160419052_DataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708160443081_Movew-Rating.cs" />
+    <Compile Include="Migrations\201708160443081_Movew-Rating.Designer.cs">
+      <DependentUpon>201708160443081_Movew-Rating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708160419052_DataAnnotations.resx">
       <DependentUpon>201708160419052_DataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160443081_Movew-Rating.resx">
+      <DependentUpon>201708160443081_Movew-Rating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
