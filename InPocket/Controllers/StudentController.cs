@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using InPocket.DAL;
+﻿using InPocket.DAL;
 using InPocket.Models;
 using PagedList;
+using System;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using System.Data.Entity.Infrastructure;
 
 namespace InPocket.Controllers
 {
@@ -104,7 +102,7 @@ namespace InPocket.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch
+            catch (RetryLimitExceededException /* dex */)
             {
         //Log the error (uncomment dex variable name and add a line here to write a log.
         ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");            }
@@ -161,7 +159,8 @@ namespace InPocket.Controllers
 
                     return RedirectToAction("Index");
                 }
-                catch (DataException /* dex */)
+                catch (RetryLimitExceededException /* dex */)
+                //catch (DataException /* dex */)
                 {
                     //Log the error (uncomment dex variable name and add a line here to write a log.
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
@@ -201,7 +200,8 @@ namespace InPocket.Controllers
                 db.Students.Remove(student);
                 db.SaveChanges();
             }
-            catch (DataException/* dex */)
+            catch (RetryLimitExceededException /* dex */)
+            //catch (DataException/* dex */)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
